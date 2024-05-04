@@ -1,13 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 
 export default {
-  content: [],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
-  },
-  extend: {
-    fontFamily: {
-      nunito: ["@/assets/fonts/NunitoSans.ttf", "sans-serif", "sans-serif"],
+    extend: {
+      colors: {
+        lightblue: "#161C29",
+      },
     },
   },
   plugins: [],
