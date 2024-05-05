@@ -7,6 +7,7 @@ import SideBar from "@/components/sidebar";
 import Tasks from "@/pages/tasks";
 import Schedule from "@/pages/schedule";
 import Dashboard from "@/pages/dashboard";
+import Settings from "@/pages/settings";
 
 function App() {
   const isDarkMode = useAppSelector(
@@ -21,6 +22,8 @@ function App() {
         return <Tasks />;
       case "schedule":
         return <Schedule />;
+      case "settings":
+        return <Settings />;
       default:
         return <Dashboard />;
     }
@@ -42,7 +45,7 @@ function App() {
           <TopBarActions />
         </div>
         <div
-          className={`row-span-full flex flex-col items-center border-r border-slate-700 py-4`}
+          className={`relative row-span-full flex flex-col items-center justify-between border-r border-slate-700 py-4`}
         >
           <SideBar />
         </div>

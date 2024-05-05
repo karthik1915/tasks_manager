@@ -1,7 +1,7 @@
 import { createSlice, createSelector, PayloadAction } from "@reduxjs/toolkit";
 
 export interface RouteState {
-  route: "dashboard" | "tasks" | "schedule";
+  route: "dashboard" | "tasks" | "schedule" | "settings";
 }
 
 const initialState: RouteState = {

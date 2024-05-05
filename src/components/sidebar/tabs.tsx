@@ -18,7 +18,7 @@ const Tabs: React.FC = () => {
   const selectedTab = useAppSelector((state) => state.route.route);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="my-4 flex flex-col gap-5">
       <IconButton
         Icon={MenuIcon}
         select={selectedTab === "dashboard"}
@@ -50,7 +50,11 @@ interface IconButtonProps {
   link?: RouteState;
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ Icon, select, link }) => {
+export const IconButton: React.FC<IconButtonProps> = ({
+  Icon,
+  select,
+  link,
+}) => {
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const dispatch: Dispatch = useAppDispatch();
 
@@ -62,7 +66,7 @@ const IconButton: React.FC<IconButtonProps> = ({ Icon, select, link }) => {
 
   return (
     <button
-      className={`${isDarkMode ? "hover:bg-lightblue " : "hover:bg-zinc-200"} ${select && (isDarkMode ? "bg-lightblue" : "bg-zinc-200")} cursor-pointer rounded-lg p-2`}
+      className={`${isDarkMode ? "hover:bg-lightblue " : "hover:bg-zinc-200"} ${select && (isDarkMode ? "bg-lightblue" : "bg-zinc-200")} rounded-lg p-2`}
       onClick={handleRoute}
     >
       <Icon

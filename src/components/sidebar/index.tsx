@@ -1,11 +1,19 @@
 import React from "react";
 import Tabs from "./tabs";
+import LogButton from "./logButtons";
+import ControlButtons from "./controlButtons";
 
 const SideBar: React.FC = () => {
   return (
     <>
-      <img src="/logo.png" alt="app logo" className="mt- mb-10 h-10 w-10" />
-      <Tabs />
+      <div>
+        <img src="/logo.png" alt="app logo" className=" mb-7 h-10 w-10" />
+        <Tabs />
+      </div>
+      <div>
+        <ControlButtons />
+        <LogButton />
+      </div>
     </>
   );
 };
