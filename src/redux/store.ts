@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { themeSlice } from "./features/themes/themeReducer";
-import { routeSlice } from "./features/route/routeReducer";
-
+import themeSlice from "./features/themes/themeReducer";
+import routeSlice from "./features/route/routeReducer";
+import authReducer from "./features/auth/authReducer";
 export const store = configureStore({
   reducer: {
-    theme: themeSlice.reducer,
-    route: routeSlice.reducer,
+    auth: authReducer,
+    route: routeSlice,
+    theme: themeSlice,
   },
 });
 

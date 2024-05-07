@@ -1,47 +1,60 @@
-// import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
 import { LogInIcon, LogOutIcon } from "@/assets/icons";
 import { useState } from "react";
 import Popup from "@/components/popup";
-import RegisterForm from "@/components/auth/registerForm";
-// import { Dispatch } from "redux";
+import useFireBaseAuth from "@/hooks/useFireBaseAuth";
+import { useAppSelector } from "@/hooks";
 
 const LogButton: React.FC = () => {
-  const [active, setActive] = useState(false);
-  // const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
-  // const isLoggedIn = useAppSelector((state) => state.login.logged);
-  // const dispatch: Dispatch = useAppDispatch();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [popUp, setPopUp] = useState(false);
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
 
-  const isLoggedIn = true;
-  const handleActive = () => {
-    setActive(true);
+  const handleClose = () => {
+    setIsOpen(false);
   };
-  const handleInActive = () => {
-    setActive(false);
-  };
-  const handleLogin = () => {
-    setPopUp(!popUp);
-    //   dispatch(handleLogin());
-  };
+
+  const { signInWithGoogle, signOut } = useFireBaseAuth();
+  const userInfo = useAppSelector((state) => state.auth.user);
+  const isAuthenticated = userInfo !== null;
 
   return (
-    <div
-      className={`${active ? "purple" : ""} cursor-pointer rounded-lg p-2`}
-      onMouseEnter={handleActive}
-      onMouseLeave={handleInActive}
-      onClick={handleLogin}
-    >
-      {isLoggedIn ? (
-        <LogInIcon width={24} height={24} stroke="#f94d4d" />
+    <div className={`cursor-pointer rounded-lg p-2`}>
+      {isAuthenticated ? (
+        <LogOutIcon
+          width={24}
+          height={24}
+          stroke="#f94d4d"
+          onClick={() => handleOpen()}
+        />
       ) : (
-        <LogOutIcon width={24} height={24} stroke="#f94d4d" />
+        <LogInIcon
+          width={24}
+          height={24}
+          stroke="#f94d4d"
+          onClick={() => handleOpen()}
+        />
       )}
-      {popUp && (
-        <Popup>
-          <RegisterForm />
-        </Popup>
-      )}
+      <Popup isOpen={isOpen} onClose={handleClose}>
+        {!isAuthenticated ? (
+          <button
+            onClick={() => {
+              signInWithGoogle();
+            }}
+          >
+            Log in
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              signOut();
+            }}
+          >
+            logOut
+          </button>
+        )}
+      </Popup>
     </div>
   );
 };

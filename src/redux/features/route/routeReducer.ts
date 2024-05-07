@@ -8,7 +8,7 @@ const initialState: RouteState = {
   route: "dashboard",
 };
 
-export const routeSlice = createSlice({
+const routeSlice = createSlice({
   name: "route",
   initialState,
   reducers: {

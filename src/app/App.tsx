@@ -8,11 +8,16 @@ import Tasks from "@/pages/tasks";
 import Schedule from "@/pages/schedule";
 import Dashboard from "@/pages/dashboard";
 import Settings from "@/pages/settings";
+import { useEffect } from "react";
 
 function App() {
   const isDarkMode = useAppSelector(
     (state: RootState) => state.theme.isDarkMode,
   );
+
+  useEffect(() => {
+    console.log("checking for authentication");
+  }, []);
 
   const currentTab = useAppSelector((state) => state.route.route);
 
